@@ -1,0 +1,27 @@
+body {
+	background:url('/assets/img/mining-tenements-dmirs.png');
+	background-size:cover;
+	/* the following are for firefox 70 */
+	opacity:1;
+    z-index:1;
+
+    font-family: 'Nunito', sans-serif;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+    text-transform: none;
+}
+
+.reveal sup {
+    vertical-align: super;
+    font-size: 50%;
+}
+
+@media print {
+	.backgrounds {
+		background:url('/assets/img/mining-tenements-dmirs.png');
+		/* if you used "cover" on screen,
+		 * you will probably want "contains" on print */
+		background-size:contain;
+	}
+}

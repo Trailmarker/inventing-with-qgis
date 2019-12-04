@@ -4,11 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
-
+		<title>GeoRabble Darwin #2: Mining Exploration Regulation</title>
+		<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/custom.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -25,8 +26,212 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown>
+					## Using spatial technology
+					
+					## to regulate
+					
+					## mining exploration
+
+					#### GeoRabble Darwin #2
+				</section>
+				<section data-markdown>
+					This talk is about systems I helped develop at the Department of Mines, Industry Regulation
+					and Safety (DMIRS) in Western Australia from 2015 to 2017
+				</section>
+				<section data-background="/assets/img/mineral-house.jpg">
+					Down in the East Perth State government ghetto
+				</section>
+				<section data-markdown>
+					### The Programme of Work Spatial Lodgement Portal 
+					
+					PoW-S was launched by DMIRS in March 2017
+				</section>
+				<section data-markdown>
+					PoW-S replaced old school manual processes with an online system used 
+					by mining companies to
+					
+					* propose exploration activities
+					* get realtime feedback
+					* streamline the provision of supporting information
+					* fast-track "low impact" proposals 
+				</section>
+				<section data-markdown>
+					In its 2018 Annual Report, DMIRS stated
+					
+					* **2,643** Programme of Work applications for exploration had been processed
+					* assessment times were cut by an average **7-10 days**
+					* **93%** of users were _satisfied to very satisfied_ with PoW Spatial usability
+				</section>
+				<section data-markdown>
+					# PoW-S SCREENSHOT
+				</section>
+				<section data-markdown>
+					# ARCHITECTURE DIAGRAM
+				</section>
+				<section>
+					<h4>The regulatory landscape of mining</h4>
+					<table>
+						<thead>
+							<th></th>
+							<th>Proposal</th>
+							<th>Approval</th>
+							<th>Compliance</th>
+							<th>Closure</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Legal</td>
+								<td colspan="4"><small>Tenure, land ownership, native title, environmental protections, 
+									rehabilitation funds and bonds</small></td>
+							</tr>
+							<tr>
+								<td>Administrative</td>
+								<td colspan="4"><small>Sections, officers, experts, fees, royalties, procedures</small></td>
+							</tr>
+							<tr>
+								<td>Technical</td>
+								<td colspan="4"><small>Forms, databases, algorithms, integrated services, 
+									reports, statutory datasets</small></td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<section data-markdown>
+					#### The business drivers for PoW-S
+
+					* reduce the time to assess MinEx proposals
+					* improve the proposal process for industry users
+					* reallocate staff and resources to compliance
+				</section>
+				<section data-markdown>
+					**exploration ground disturbance activities** include drilling, roads, costeans, 
+					campsites and surveys
+				</section>
+				<section data-markdown>
+					an exploration activity is a _spatial object_, and it has
+
+					* a geometry (point, line, polygon)
+					* an envelope (buffered hull)
+					* metadata which defines how it is processed
+
+					PoW-S is about _entering exploration activities_
+				</section>
+				<section data-markdown>
+					#### The DMIRS spatial data landscape
+
+					DMIRS maintains a geodatabase of corporate layers sourced from different agencies 
+
+					* mining tenure and tenement data
+					* protected flora and fauna
+					* national parks and state reserves
+					* heritage and sacred sites
+					* pastoral leases
+					* rivers and bodies of water
+					
+					about half of about 150 layers are relevant to PoW-S
+				</section>
+				<section data-markdown>
+					#### Mining tenure
+
+					* a proponent of MinEx activities needs to hold exploration tenure on the area to be disturbed 
+					* DMIRS has a demanding SLA on this commercially sensitive public tenure data
+					* decisions impact the stock market
+				</section>
+				<section data-background="/assets/img/fortescue-native-title-hit.png">
+				</section>
+				<section data-markdown>
+					#### Encroachments
+					
+					in PoW-S, when a proposed activity intersects with a feature in a corporate layer, this 
+					is referred to as an _encroachment_
+
+					the geometry of an encroachment is fed into a PoW-S _rules engine_ which behaves 
+					differently based on the type of activity and the encroached layer
+				</section>
+				<section data-markdown>
+					#### Encroachments
+
+					3 possible results of encroachment
+
+					* no impact
+					* activity must be removed or changed
+					* activity causes an _encumbrance_ needing follow-up
+				</section>
+				<section data-markdown>
+					#### Activities with no impact
+					
+					what if all activities in a proposal have no impact? 
+					
+					it is a candidate for a "low impact" assessment which can be fast-tracked
+				</section>
+				<section data-markdown>
+					#### Rejected activities
+
+					PoW-S provides two options
+
+					1. remove the problem activity
+					2. _excise_ the encroachments (clip all intersecting layers from its envelope)
+					
+					in the old process, these problems would cause entire proposals to "bounce" and 
+					need to be resubmitted
+				</section>
+				<section>
+					<h4>Encroached and encumbered</h4>
+					<table>
+						<tr>
+							<td>native title</td>
+							<td>document agreement with traditional owners</td>
+						</tr>
+						<tr>
+							<td>pastoral lease</td>
+							<td>notify leaseholder</td>
+						</tr>
+						<tr>
+							<td>campsite near a watercourse</td>
+							<td>define mitigation plan</td>
+						</tr>
+					</table>
+				</section>
+				<section data-markdown>
+					once all rejected activities in a proposal are dealt with, PoW-S generates a 
+					wizard-style _questionnaire_ so the proponent can supply the supporting 
+					information for the proposal's outstanding encumbrances, as text and attachments
+				</section>
+				<section data-markdown>
+					once the proposal is submitted and being processed for approval, encumbrances 
+					form part of the proponent's contractual obligations under any approved agreement
+				</section>
+				<section data-markdown>
+					PoW-S was one of several spatial systems implemented by DMIRS for efficiency and rigour 
+					overseeing the mine life cycle, with others to follow
+				</section>
+				<section data-markdown>
+					#### FRS or Feature Relationship Services
+					
+					* a "spatially enabled workflow management engine"
+					* not an application, an API (no front end)
+					* recorded a network view of relationships between audited groups of features 
+					passing through DMIRS processes: proposed, approved, actual
+						* compare actual with approved via rules engine!
+				    * features still retained in an ESRI feature class compatible with ArcGIS Server
+				</section>
+				<section data-markdown>
+					#### EAVie (Environment Assessment VIEwer)
+
+					* one-stop shop for Environment Officers dealing with PoW-S proposals
+					* encumbrances generate pro forma contract text
+					* activities link to other systems of record via integrated services, displaying context
+					* doubled the efficiency of EOs processing proposals
+				</section>
+				<section data-markdown>
+					# EAVIE SCREENSHOT
+				</section>
+				<!-- <section data-markdown>
+					#### References
+
+					1. DMIRS Annual Report 2017-2018 Case Study, retrieved from https://www.dmirs.wa.gov.au/annualreport/2017-18/case-studies/programme-of-work.html 
+				</section> -->
 			</div>
 		</div>
 
