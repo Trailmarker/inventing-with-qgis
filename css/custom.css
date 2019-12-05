@@ -1,5 +1,5 @@
 body {
-	background:url('/assets/img/mining-tenements-dmirs.png');
+	background:url('../assets/img/mining-tenements-dmirs.png');
 	background-size:cover;
 	/* the following are for firefox 70 */
 	opacity:1;
@@ -19,7 +19,7 @@ body {
 
 @media print {
 	.backgrounds {
-		background:url('/assets/img/mining-tenements-dmirs.png');
+		background:url('../assets/img/mining-tenements-dmirs.png');
 		/* if you used "cover" on screen,
 		 * you will probably want "contains" on print */
 		background-size:contain;
