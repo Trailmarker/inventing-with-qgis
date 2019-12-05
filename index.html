@@ -71,27 +71,27 @@
 				<section data-background="/assets/img/pow-s-dataflow.svg">
 				</section>
 				<section>
-					<h4>The complex regulatory landscape</h4>
+					<h4>The regulatory landscape</h4>
 					<table>
 						<thead>
 							<th></th>
-							<th>Proposal</th>
-							<th>Approval</th>
-							<th>Compliance</th>
-							<th>Closure</th>
+							<th><small>Proposal</small></th>
+							<th><small>Approval</small></th>
+							<th><small>Compliance</small></th>
+							<th><small>Closure</small></th>
 						</thead>
 						<tbody>
 							<tr>
-								<td>Legal</td>
+								<td><small>Legal</small></td>
 								<td colspan="4"><small>Tenure, land ownership, native title, environmental protections, 
 									rehabilitation funds and bonds</small></td>
 							</tr>
 							<tr>
-								<td>Administrative</td>
+								<td><small>Administrative</small></td>
 								<td colspan="4"><small>Sections, officers, experts, fees, royalties, procedures</small></td>
 							</tr>
 							<tr>
-								<td>Technical</td>
+								<td><small>Technical</small></td>
 								<td colspan="4"><small>Forms, databases, algorithms, integrated services, 
 									reports, statutory datasets</small></td>
 							</tr>
@@ -119,9 +119,7 @@
 					PoW-S is about _entering exploration activities_
 				</section>
 				<section data-markdown>
-					#### The DMIRS spatial data landscape
-
-					DMIRS maintains a geodatabase of corporate layers sourced from different agencies 
+					DMIRS maintains a geodatabase with layers sourced from different WA agencies 
 
 					* mining tenure and tenement data
 					* protected flora and fauna
@@ -216,8 +214,6 @@
 					* not an application, an API (no front end)
 					* recorded a network view of relationships between audited groups of features 
 					passing through DMIRS processes: proposed, approved, actual
-						* compare actual with approved via rules engine!
-				    * features still retained in an ESRI feature class compatible with ArcGIS Server
 				</section>
 				<section data-markdown>
 					#### EAVie (Environment Assessment VIEwer)
@@ -230,14 +226,26 @@
 				<section data-background="/assets/img/eavie-screenshot.png">
 				</section>
 				<section data-markdown>
-					#### Takeaways
+					#### Technology (look away!)
+				
+					so PoW-S was built on ASP .NET MVC, SQL Server, ESRI ArcGIS Server, Swagger, 
+					Angular, Bootstrap, proj4js, ArcGIS JavaScript API, FME Server, 
+					ArcPy (but not ArcObjects), among others
+
+					main driver for technology choices was incumbency and the available skill base 
+
+					the same concepts could be implemented with other technologies
+				</section>
+				<section data-markdown>
+					#### Take away points
 
 					* spatial workflow systems differ from other systems
 						* lower volumes of features
 						* auditability is a primary concern
 						* complex interfaces with other business systems
-						
-					* productivity gains can be huge
+
+					* regulatory activity is necessarily meticulous and focused forensically on data
+					and legal matters - this means productivity gains can be huge
 				</section>
 			</div>
 		</div>
