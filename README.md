@@ -1,3 +1,3 @@
-### Spatial technology for regulating mining exploration
+### Inventing with QGIS
 
-A brief talk on 5 December 2019 on the use of spatial technology in resource industry regulation.
+Brief talk for FOSS4G Oceania 2021 Perth Hub, inspired by Bret Victor's "Inventing on Principle"
