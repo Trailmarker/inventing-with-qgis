@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>GeoRabble Darwin #2: Mining Exploration Regulation</title>
+		<title>Inventing with QGIS</title>
 		<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
@@ -16,7 +16,7 @@
 
 		<!-- Printing and PDF exports -->
 		<script>
-			var link = document.createElement( 'link' );
+			var link = document.createElement('link');
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
@@ -27,215 +27,149 @@
 		<div class="reveal">
 			<div class="slides">
 				<section data-markdown>
-					## Using spatial technology
+					## Inventing
 					
-					## to regulate
+					## with
 					
-					## mining exploration
+					## QGIS
 
-					#### GeoRabble Darwin #2
+					#### FOSS4G Oceania Perth Hub 2021
 				</section>
 				<section data-markdown>
-					this talk is about systems I helped develop at the Department of Mines, Industry Regulation
-					and Safety (DMIRS) in Western Australia from 2015 to 2017
+					this talk is about my experiences developing QGIS plugins from 2019–2021
+
+					working with Gaia Resources
 				</section>
 				<section data-background="assets/img/mineral-house.jpg">
-					down in the East Perth State government ghetto
+					up in the tropics
 				</section>
 				<section data-markdown>
-					### The Programme of Work Spatial Lodgement Portal 
+					### about me
+
+					* first programmed something in 1987
+					* actual programmer since 2004(ish)
+					* not actually a proper Python programmer
+				</section>
+				<section data-markdown>
+					### my first programs (bringing these up for a reason)
+
+					* Amstrad PCW-8512 turtle graphics
+
+					![LocoScript file chooser!](/assets/img/pcs-locoscript-file-chooser.png)
+				</section>
+				<section data-markdown>
+					### inspirations 
 					
-					PoW-S was launched by DMIRS in March 2017
+					Bret Victor's talk "Inventing on Principle" (CUSEC 2012)
+
+					> "So, unlike the previous session, I don’t have any prizes to give out. I’m just going to tell you how to live your life."
 				</section>
 				<section data-markdown>
-					PoW-S replaced old school manual processes with an online system used 
-					by mining companies to
+					### inventing on principle
 					
-					* propose exploration activities
-					* get realtime feedback
-					* streamline the provision of supporting information
-					* fast-track "low impact" proposals 
+					[add references]
 				</section>
 				<section data-markdown>
-					in its 2018 Annual Report, DMIRS stated
+					the big and beautiful messsage in Bret's talk is that technical practice like programming can and should engage our intuition 
+					and creativity by *tightening feedback loops*
+
+					go and watch it …
 					
-					* **2,643** Programme of Work applications for exploration had been processed
-					* assessment times were cut by an average **7-10 days**
-					* **93%** of users were _satisfied to very satisfied_ with PoW Spatial usability
-				</section>
-				<section data-background="assets/img/pow-s-screenshot.jpg">
+					[insert change ←→ see diagram]
 				</section>
 				<section data-markdown>
-					![PoW-S screenshot](assets/img/pow-s-screenshot.jpg)
-				</section>
-				<section data-background="assets/img/pow-s-dataflow.svg">
-				</section>
-				<section>
-					<h4>The regulatory landscape</h4>
-					<table>
-						<thead>
-							<th></th>
-							<th><small>Proposal</small></th>
-							<th><small>Approval</small></th>
-							<th><small>Compliance</small></th>
-							<th><small>Closure</small></th>
-						</thead>
-						<tbody>
-							<tr>
-								<td><small>Legal</small></td>
-								<td colspan="4"><small>Tenure, land ownership, native title, environmental protections, 
-									rehabilitation funds and bonds</small></td>
-							</tr>
-							<tr>
-								<td><small>Administrative</small></td>
-								<td colspan="4"><small>Sections, officers, experts, fees, royalties, procedures</small></td>
-							</tr>
-							<tr>
-								<td><small>Technical</small></td>
-								<td colspan="4"><small>Forms, databases, algorithms, integrated services, 
-									reports, statutory datasets</small></td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-				<section data-markdown>
-					#### The business drivers for PoW-S
-
-					* reduce the time to assess MinEx proposals
-					* improve the proposal process for industry users
-					* reallocate staff and resources to compliance
-				</section>
-				<section data-markdown>
-					**exploration ground disturbance activities** include drill holes and pads, tracks, costeans, 
-					campsites, core sample farms and surveys
-				</section>
-				<section data-markdown>
-					an exploration activity is a _spatial object_, and it has
-
-					* a geometry (point, line, polygon)
-					* an envelope (buffered hull)
-					* metadata which defines how it is processed
-
-					PoW-S is about _entering exploration activities_
-				</section>
-				<section data-markdown>
-					DMIRS maintains a geodatabase with layers sourced from different WA agencies 
-
-					* mining tenure and tenement data
-					* protected flora and fauna
-					* national parks and state reserves
-					* heritage and sacred sites
-					* pastoral leases
-					* rivers and bodies of water
+					### anatomy of a QGIS plugin
 					
-					about half of about 150 layers are relevant to PoW-S
+					* a Python program that runs inside QGIS and can't really run without QGIS
+					* accesses QGIS [link] and Qt [link] APIs to access and process data, make maps, add and remove layers, add and remove tools and toolbars, change symbology and do, well, almost anything
+					* Python bootstrapped by QGIS when the plugin is activated
 				</section>
 				<section data-markdown>
-					#### Mining tenure
+					### NAFI ~~Risk Reduction Program~~ ~~Bushfires NT~~ ~~Burnt Areas Mapping~~ plug-in
 
-					* a proponent of MinEx activities needs to hold exploration tenure on the area to be disturbed 
-					* DMIRS has a demanding SLA on this commercially sensitive public tenure data
-					* decisions impact the stock market
-				</section>
-				<section data-background="assets/img/fortescue-native-title-hit.png">
-				</section>
-				<section data-markdown>
-					#### Encroachments
-					
-					in PoW-S, when a proposed activity intersects with a feature in a corporate layer, this 
-					is referred to as an _encroachment_
+					* recent work with North Australia and Rangelands Fire Information [include link] for high resolution fire scar mapping
+					* base fire scar information is derived from the Sentinel-5 satellite [include link]
 
-					the geometry of an encroachment is fed into a PoW-S _rules engine_ which behaves 
-					differently based on the type of activity and the encroached layer
-				</section>
-				<section data-markdown>
-					#### Encroachments
+					> "The Sentinel-5 mission consists of high resolution spectrometer system operating in the ultraviolet to
+					shortwave infrared range with 7 different spectral bands: UV-1 (270-300nm), UV-2 (300-370nm), VIS (370-500nm), 
+					NIR-1 (685-710nm), NIR-2 (745-773nm), SWIR-1 (1590-1675nm) and SWIR-3 (2305-2385nm)."
 
-					3 possible results of encroachment
+					* infrared bands → heat information!
+				</section>
+				<section data-markdown>
+					### NAFI sidebar
 
-					* no impact
-					* activity must be removed or changed
-					* activity causes an _encumbrance_ needing follow-up
+					[include video with Rohan and discussion of NAFI's work]
 				</section>
 				<section data-markdown>
-					#### Activities with no impact
-					
-					what if all activities in a proposal have no impact? 
-					
-					it is a candidate for a "low impact" assessment which can be fast-tracked
-				</section>
-				<section data-markdown>
-					#### Rejected activities
+					### NAFI Burnt Areas Mapping plug-in
 
-					PoW-S provides two options
+					[include process diagram]
+				</section>
+				<section data-markdown>
+					### a bit like app development?
 
-					1. remove the problem activity
-					2. _excise_ the encroachments (clip all intersecting layers from its envelope)
-					
-					in the old process, these problems would cause entire proposals to "bounce" and 
-					need to be resubmitted
-				</section>
-				<section>
-					<h4>Encroached and encumbered</h4>
-					<table>
-						<tr>
-							<td>native title</td>
-							<td>document agreement with traditional owners</td>
-						</tr>
-						<tr>
-							<td>pastoral lease</td>
-							<td>notify leaseholder</td>
-						</tr>
-						<tr>
-							<td>campsite near a watercourse</td>
-							<td>define mitigation plan</td>
-						</tr>
-					</table>
-				</section>
-				<section data-markdown>
-					once all rejected activities in a proposal are dealt with, PoW-S generates a 
-					wizard-style _questionnaire_ so the proponent can supply the supporting 
-					information for the proposal's outstanding encumbrances, as text and attachments
-				</section>
-				<section data-markdown>
-					once the proposal is submitted and being processed for approval, encumbrances 
-					form part of the proponent's contractual obligations under any approved agreement
-				</section>
-				<section data-background="assets/img/pow-s-dataflow.svg">
-				</section>
-				<section data-markdown>
-					PoW-S was one of several spatial systems implemented by DMIRS for efficiency and rigour 
-					overseeing the mine life cycle, with others to follow
-				</section>
-				<section data-markdown>
-					#### FRS or Feature Relationship Services
-					
-					* a "spatially enabled workflow management engine"
-					* not an application, an API (no front end)
-					* recorded a network view of relationships between audited groups of features 
-					passing through DMIRS processes: proposed, approved, actual
-				</section>
-				<section data-markdown>
-					#### EAVie (Environment Assessment VIEwer)
+					as with developing an app or an embedded system, the basic model is that you're building your code *outside of the thing it runs on*, 
+					then *transferring it to the thing to run*
 
-					* one-stop shop for Environment Officers dealing with PoW-S proposals
-					* encumbrances generate pro forma contract text
-					* activities link to other systems of record via integrated services, displaying context
-					* doubled the efficiency of EOs processing proposals
-				</section>
-				<section data-background="assets/img/eavie-screenshot.png">
-				</section>
-				<section data-background="assets/img/technologies.svg">
+					*this is slow and it's better if it's faster*
 				</section>
 				<section data-markdown>
-					#### Take away points
+					### making feedback faster (version 1)
 
-					* spatial workflow systems differ from other spatial systems
+					* experiment in the QGIS Python REPL
+					* develop code that can be run outside of QGIS
+					* write tests for this code
+					* Plugin Reloader (also a plugin)
+				</section>
+				<section data-markdown>
+					### making feedback faster (version 2)
 
-					* regulatory activity is focused forensically on data
-					and legal matters
-					
-					* productivity gains from automating regulation can be huge
+					* integrate all testing with a full running version of QGIS
+					* auto-reload the plugin when code changes
+					* use QGIS Processing tools in your code
+				</section>
+				<section data-markdown>
+					demo - auto-running unit tests in a QGIS plugin
+				</section>
+				<section data-markdown>
+					### QGIS processing framework
+
+					* provides a click-and-connect process modeller
+					* access a ~~large~~ *vast* suite of standard QGIS processing tools
+					* user interface to activate individual tools, with help
+					* package tools with your plugin and use them on an ad hoc basis
+				</section>
+				<section data-markdown>
+					### QGIS processing framework
+
+					* QGIS processing tools can also access any FOSS4G library packaged in Python with QGIS (this is a lot of them)
+					* this includes eg GDAL, OGR, OWSLib
+					* this is *very powerful*
+				</section>
+				<section data-markdown>
+					demo - exploratory testing with QGIS processing tools
+				</section>
+				<section data-markdown>
+					### Bonus: Qt versus reactive front-end frameworks
+
+					* Qt was invented to do event-driven cross-platform UX programming in C++
+					* many extremely cool innovations (signals, slots, layouts)
+					* still a leading framework for cross-platform UX (competitors are things like Java, Electron, Tcl/Tk)
+				</section>
+				<section data-markdown>
+					### a reactive web front-end … embedded in QGIS
+
+					* it is actually possible to embed web frameworks in QGIS via the QWebView
+					* the QWebView can host a full React, Angular, Aurelia, etc application written in JavaScript or TypeScript
+				</section>
+				<section data-markdown>
+					demo - reactive TypeScript embedded in QGIS
+				</section>
+				<section data-markdown>
+					Thanks!
+
+					[include Gaia Resources and Trailmarker logos]
 				</section>
 			</div>
 		</div>
